@@ -1,19 +1,19 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: scaledobject-podinfo
+  name: scaledobject-sts
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
-    kind: Deployment
-    name: podinfo
-  pollingInterval:  20                               # Optional. Default: 30 seconds
-  cooldownPeriod:   40                               # Optional. Default: 300 seconds
+    kind: StatefulSet
+    name: sts-nginx
+  pollingInterval:  3                               # Optional. Default: 30 seconds
+  cooldownPeriod:   10                              # Optional. Default: 300 seconds
   idleReplicaCount: 0                                # Optional. Default: ignored, must be less than minReplicaCount 
   minReplicaCount:  1                                # Optional. Default: 0
   maxReplicaCount:  3                                # Optional. Default: 100
   triggers:
   - type: kubernetes-workload
     metadata:
-      podSelector: 'app=deployment-nginx'
+      podSelector: 'app=nginx'
       value: '3'

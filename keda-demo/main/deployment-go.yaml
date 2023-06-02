@@ -1,31 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-nginx
+  name: deployment-go
   labels:
-    app: nginx
+    app: go-app
   annotations:
-    prometheus.io/scrape: 'true'
-    prometheus.io/port:   '80'
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8090"
+    prometheus.io/scrape: "true"
+    prometheus.io/scheme: http
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: go-app
   template:
     metadata:
       annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8090"
         prometheus.io/scrape: "true"
-        prometheus.io/port: "80"
+        prometheus.io/scheme: http
       labels:
-        app: nginx
+        app: go-app
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.14.2
+        - name: go-app
+          image: localhost:5001/go-server
           ports:
-            - containerPort: 80
-              name: http-web-svc
+            - containerPort: 8090
+              name: http-go-svc
           resources:
             limits:
               cpu: "100m"

@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor-deployment-nginx
+  labels:
+    app: nginx
+spec:
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      app: nginx
+  endpoints:
+  - port: http-web-svc
+    interval: 30s
+    # scheme: http
+    # tlsConfig:
+    #   insecureSkipVerify: true

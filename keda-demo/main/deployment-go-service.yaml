@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-deploy-go
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8090"
+    prometheus.io/scrape: "true"
+    prometheus.io/scheme: http
+spec:
+  selector:
+    app: go-app
+  type: NodePort
+  ports:
+  - name: http-go-svc
+    protocol: TCP
+    port: 8090
+    targetPort: http-go-svc
+    nodePort: 30809

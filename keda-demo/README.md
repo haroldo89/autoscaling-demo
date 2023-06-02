@@ -29,7 +29,7 @@ The example uses, targets or assumes:
 
 * Deploy objects:
 ```
-kubectl apply  -k ./keda-demo/main
+kubectl apply -k ./keda-demo
 ```
 
 ## Details
@@ -88,5 +88,5 @@ standard (default)   kubernetes.io/host-path   5h
 
 Clean up environment:
 ```
-kubectl delete  -k overlays/dev
+kubectl delete -k ./keda-demo
 ```

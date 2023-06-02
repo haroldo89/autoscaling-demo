@@ -3,12 +3,14 @@ kind: Kustomization
 namespace: keda-demo
 resources:
   - namespace.yaml
+  - deployment-busybox.yaml
+  - deployment-go.yaml
+  - deployment-go-service.yaml
   - deployment.yaml
   - deployment-service.yaml
-  - deployment-hpa.yaml
+  - deployment-scale-object.yaml
   - statefulset.yaml
   - statefulset-service.yaml
-  - scale-object-statefulset.yaml
+  # - statefulset-scale-object.yaml
   # - statefulset-hpa.yaml
   - podinfo.yaml
-  # - scale-object-podinfo.yaml

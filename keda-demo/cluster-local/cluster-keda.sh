@@ -25,14 +25,14 @@ nodes:
         node-labels: "ingress-ready=true"
         authorization-mode: "AlwaysAllow"
   extraPortMappings:
-  - containerPort: 31672
-    hostPort: 15673
-  - containerPort: 30672
-    hostPort: 5673
   - containerPort: 30808
     hostPort: 8080
   - containerPort: 30802
     hostPort: 8082
+  - containerPort: 30909
+    hostPort: 9090
+  - containerPort: 30809
+    hostPort: 8090
   extraMounts:
   - containerPath: /var/lib/kubelet/config.json
     hostPath: $HOME/.docker/config.json
@@ -74,3 +74,7 @@ sleep 3
 
 # Without admission webhooks
 kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.10.1/keda-2.10.1-core.yaml
+
+sleep 3
+
+kubectl create -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/master/bundle.yaml

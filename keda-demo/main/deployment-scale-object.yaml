@@ -1,0 +1,23 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: scaledobject-deploy-nginx
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: deployment-nginx
+  pollingInterval:  10                               # Optional. Default: 30 seconds
+  cooldownPeriod:   30                               # Optional. Default: 300 seconds
+  idleReplicaCount: 0                                # Optional. Default: ignored, must be less than minReplicaCount 
+  minReplicaCount:  1                                # Optional. Default: 0
+  maxReplicaCount:  8                                # Optional. Default: 100 
+  triggers:
+  # - type: cpu
+  #   metricType: Utilization                        # Allowed types are 'Utilization' or 'AverageValue'
+  #   metadata:
+  #     value: "10"
+  - type: kubernetes-workload
+    metadata:
+      podSelector: 'app=busybox'
+      value: '0.1'
