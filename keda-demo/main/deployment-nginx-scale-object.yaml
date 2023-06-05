@@ -1,0 +1,24 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: scaledobject-deploy-nginx
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
+  pollingInterval:  10                               # Optional. Default: 30 seconds
+  cooldownPeriod:   30                               # Optional. Default: 300 seconds
+  idleReplicaCount: 0                                # Optional. Default: ignored, must be less than minReplicaCount 
+  minReplicaCount:  1                                # Optional. Default: 0
+  maxReplicaCount:  3                                # Optional. Default: 100 
+  triggers:
+  - type: kubernetes-workload
+    metadata:
+      podSelector: 'app=jenkins'
+      value: '0.1'
+  - type: kubernetes-workload
+    metadata:
+      podSelector: 'app=sonarqube'
+      value: '0.1'
+  

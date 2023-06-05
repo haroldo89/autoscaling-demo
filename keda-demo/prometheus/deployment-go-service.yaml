@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-deploy-go
+  labels:
+    app: go-app
   annotations:
     prometheus.io/path: /metrics
     prometheus.io/port: "8090"

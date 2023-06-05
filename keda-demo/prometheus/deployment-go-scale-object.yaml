@@ -1,23 +1,22 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: scaledobject-deploy-nginx
+  name: scaledobject-deploy-go
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deployment-nginx
+    name: postgresql
   pollingInterval:  10                               # Optional. Default: 30 seconds
   cooldownPeriod:   30                               # Optional. Default: 300 seconds
   idleReplicaCount: 0                                # Optional. Default: ignored, must be less than minReplicaCount 
   minReplicaCount:  1                                # Optional. Default: 0
-  maxReplicaCount:  8                                # Optional. Default: 100 
+  maxReplicaCount:  3                                # Optional. Default: 100 
   triggers:
-  # - type: cpu
-  #   metricType: Utilization                        # Allowed types are 'Utilization' or 'AverageValue'
-  #   metadata:
-  #     value: "10"
-  - type: kubernetes-workload
+  - type: prometheus
     metadata:
-      podSelector: 'app=busybox'
-      value: '0.1'
+      serverAddress: http://prometheus.default.svc.cluster.local:9090
+      # metricName: http_requests_total # DEPRECATED: This parameter is deprecated as of KEDA v2.10 and will be removed in version 2.12
+      threshold: '0.1'
+      query: promhttp_metric_handler_requests_total{code="200",service="service-deploy-go"}
+  

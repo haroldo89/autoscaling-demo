@@ -3,7 +3,8 @@ kind: Kustomization
 namespace: default
 resources:
   - prometheus.yaml
-  - deployment-go-monitor.yaml
-  - deployment-monitor.yaml
   - prometheus-monitor.yaml
-  
+  - deployment-go.yaml
+  - deployment-go-service.yaml
+  - deployment-go-monitor.yaml
+  - deployment-go-scale-object.yaml

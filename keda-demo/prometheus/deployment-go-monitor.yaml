@@ -3,16 +3,11 @@ kind: ServiceMonitor
 metadata:
   name: monitor-deployment-go
   labels:
-    app: go-app
+    app: prometheus
 spec:
-  namespaceSelector:
-    any: true
   selector:
     matchLabels:
       app: go-app
   endpoints:
   - port: http-go-svc
     interval: 30s
-    # scheme: http
-    # tlsConfig:
-    #   insecureSkipVerify: true

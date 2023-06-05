@@ -9,10 +9,10 @@ COPY . .
 
 # Compila la aplicación Go
 RUN go mod download
-RUN go build -o server
+RUN go build -o app
 
 # Expone el puerto en el que se ejecutará el servidor
 EXPOSE 8090
 
 # Ejecuta el servidor cuando se inicie el contenedor
-CMD ["./server"]
+CMD ["./app"]

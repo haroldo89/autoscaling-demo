@@ -25,14 +25,18 @@ nodes:
         node-labels: "ingress-ready=true"
         authorization-mode: "AlwaysAllow"
   extraPortMappings:
-  - containerPort: 30808
-    hostPort: 8080
+  - containerPort: 30888
+    hostPort: 8088
+  - containerPort: 30801
+    hostPort: 8081
   - containerPort: 30802
     hostPort: 8082
-  - containerPort: 30909
-    hostPort: 9090
   - containerPort: 30809
     hostPort: 8090
+  - containerPort: 30900
+    hostPort: 9000
+  - containerPort: 30909
+    hostPort: 9090
   extraMounts:
   - containerPath: /var/lib/kubelet/config.json
     hostPath: $HOME/.docker/config.json
