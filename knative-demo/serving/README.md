@@ -14,25 +14,15 @@ The example uses, targets or assumes:
 
  * Create Kind cluster 
 ```
-./knative-demo/cluster-local/cluster-keda.sh
+./knative-demo/cluster-local/cluster-knative.sh
 ```
 
 * Deploy objects:
 ```
-kubectl apply -k ./keda-demo
+kubectl apply -k ./knative-demo/serving
 ```
-
-### Persistent Volumes
-
-`Kind` by default creates a [storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/) called `standard`
-```
-kubectl get storageclass
-NAME                 PROVISIONER               AGE
-standard (default)   kubernetes.io/host-path   5h
-```
-
 
 * Clean up environment:
 ```
-kubectl delete -k ./keda-demo
+kubectl delete -k ./knative-demo/serving
 ```

@@ -4,6 +4,9 @@ metadata:
   name: nginx
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/initial-scale: "0"
     spec:
       containers:
       - image: nginx

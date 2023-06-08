@@ -4,6 +4,11 @@ metadata:
   name: go-server
 spec:
   template:
+    metadata:
+        annotations:
+          autoscaling.knative.dev/initial-scale: "0"
+          # Limit scaling to 5 pods.
+          autoscaling.knative.dev/max-scale: "5"
     spec:
       containers:
       - image: haroldo89/go-server:0.0.1
