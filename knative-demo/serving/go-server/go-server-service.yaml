@@ -7,8 +7,8 @@ spec:
     metadata:
         annotations:
           autoscaling.knative.dev/initial-scale: "0"
-          # Limit scaling to 5 pods.
-          autoscaling.knative.dev/max-scale: "5"
+          # Limit scaling to 2 pods.
+          autoscaling.knative.dev/max-scale: "2"
     spec:
       containers:
       - image: haroldo89/go-server:0.0.1
