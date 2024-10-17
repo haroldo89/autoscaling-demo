@@ -1,4 +1,4 @@
-# Deploy KNATIVE on Kubernetes in local environme
+# Deploy KNATIVE on Kubernetes in local environment
 
 ## Production (Non-)Suitability
 Some values in this example **may or may not be optimal for your deployment**. 
